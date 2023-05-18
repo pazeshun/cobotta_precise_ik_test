@@ -20,3 +20,8 @@
 roseus `rospack find cobotta_precise_ik_test`/euslisp/cobotta-precise-ik-test.l
 (test)  ;; IK tests run
 ```
+```lisp
+roseus `rospack find cobotta_precise_ik_test`/euslisp/cobotta-precise-ik-test.l
+(init-robot-models)  ;; Displays cobotta and cobottax100 (model that is 100 times larger than cobotta)
+(magnify-cobotta)  ;; Magnifies cobotta
+```

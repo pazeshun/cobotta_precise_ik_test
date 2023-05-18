@@ -9,6 +9,23 @@
   (:test-init-pose ()
     (send self :angle-vector #f(-10.094 -16.3036 108.178 4.48656 -60.5562 0.91869))))
 
+(defun init-robot-models ()
+  (cobotta)
+  (cobottax100)
+  (send *cobottax100* :links :bodies :set-color nil 0.4)
+  (send *cobottax100* :base_link_lk :bodies :set-color nil 0.4)
+  (send *cobotta* :test-init-pose)
+  (send *cobottax100* :angle-vector (send *cobotta* :angle-vector))
+  (objects (list *cobotta* *cobottax100*))
+  ;; https://github.com/euslisp/jskeus/issues/606
+  (send *irtviewer* :resize 500 500)
+  (send *irtviewer* :viewpoint #f(46102.0 71704.5 69399.8))
+  (send *irtviewer* :viewtarget #f(3020.56 4.96268 19139.5))
+  (send *irtviewer* :set-val 'x::left-right-angle 59)
+  (send *irtviewer* :set-val 'x::up-down-angle 31)
+  (send *irtviewer* :look1)
+  (send *irtviewer* :draw-objects))
+
 (defun calc-ik-pos-error
   (target-coords)
   (format t "Positional error between target-coords and IK result: ~a~%"
@@ -47,8 +64,7 @@
                 target-coords thre rthre)))))
 
 (defun test ()
-  (cobotta)
-  (cobottax100)
+  (init-robot-models)
 
   (let (target-coords)
     (send *cobotta* :test-init-pose)
@@ -63,3 +79,12 @@
     (test-ik-with-cobottax100 target-coords :thre 0.05)  ;; Test 5
     (test-ik-with-cobottax100 target-coords :thre 0.001)  ;; Test 6
     ))
+
+(defun magnify-cobotta ()
+  ;; https://github.com/euslisp/jskeus/issues/606
+  (send *irtviewer* :viewpoint #f(10289.0 16795.1 11649.4))
+  (send *irtviewer* :viewtarget #f(5129.27 8207.95 5629.87))
+  (send *irtviewer* :set-val 'x::left-right-angle 59)
+  (send *irtviewer* :set-val 'x::up-down-angle 31)
+  (send *irtviewer* :look1)
+  (send *irtviewer* :draw-objects))
