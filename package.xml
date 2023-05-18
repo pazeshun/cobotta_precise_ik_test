@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cobotta_precise_ik_test</name>
+  <version>0.0.0</version>
+  <description>The cobotta_precise_ik_test package</description>
+
+  <maintainer email="pazeshun3684@gmail.com">Shun Hasegawa</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>denso_cobotta_descriptions</build_depend>
+  <build_depend>euscollada</build_depend>
+  <exec_depend>cobottaeus</exec_depend>
+
+  <export>
+  </export>
+</package>
